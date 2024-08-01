@@ -1,0 +1,107 @@
+<label xmlns:th="http://www.thymeleaf.org">
+    <div class="form-group">
+        <div class="row col-md-12">
+            <div class="col-md-6">
+                <select id="categorySelect" class="form-control" onchange="location = this.value;">
+                    <option value="" disabled selected><i class="bi bi-list"></i>Chọn danh mục</option>
+                    <option th:each="c : ${cates}" th:value="@{|/product/list?cid=${c.id}|}" th:text="${c.name}"></option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <form method="get" action="/product/list" class="form-inline">
+                    <div class="input-group">
+                        <input type="text" name="search" class="form-control" placeholder="Search by name" th:value="${param.search}">
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-primary" >Search</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+
+    </div>
+</label>
+<style>
+    /* Thiết kế cho container form-group */
+    .form-group {
+        position: relative;
+        width: 100%;
+        max-width: 1000px; /* Điều chỉnh độ rộng tối đa của hộp chọn */
+        margin: 20px 0; /* Khoảng cách giữa các phần tử */
+    }
+
+    /* Thiết kế cho thẻ select */
+    #categorySelect {
+        -webkit-appearance: none; /* Xóa kiểu mặc định trên các trình duyệt Webkit */
+        -moz-appearance: none; /* Xóa kiểu mặc định trên các trình duyệt Mozilla */
+        appearance: none; /* Xóa kiểu mặc định */
+        width: 100%;
+        padding: 10px 20px;
+        border: 1px solid #ccc; /* Đường viền của hộp chọn */
+        border-radius: 5px; /* Bo tròn góc */
+        background-color: #f9f9f9; /* Màu nền */
+        font-size: 16px; /* Kích thước font */
+        color: #333; /* Màu chữ */
+        outline: none; /* Xóa đường viền khi được chọn */
+        cursor: pointer;
+    }
+
+    /* Thiết kế cho mũi tên (arrow) */
+    #categorySelect::after {
+        content: "\25BC"; /* Mã Unicode cho mũi tên */
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+        font-size: 12px;
+        color: #555; /* Màu của mũi tên */
+    }
+
+    /* Thiết kế khi hover */
+    #categorySelect:hover,
+    #categorySelect:focus {
+        border-color: #888; /* Màu đường viền khi hover hoặc focus */
+    }
+
+    /* Thiết kế khi một tùy chọn được chọn */
+    #categorySelect option {
+        color: #333; /* Màu chữ của các tùy chọn */
+        background-color: #fff; /* Màu nền của các tùy chọn */
+    }
+    /* Đảm bảo các phần tử trong input-group nằm cùng hàng */
+    .input-group {
+        display: flex;
+        max-width: 10000px;
+    }
+
+    .input-group .form-control {
+        flex: 1; /* Đảm bảo ô nhập liệu chiếm toàn bộ không gian còn lại */
+
+    }
+
+    .input-group-append .btn {
+        height: 100%; /* Đảm bảo nút tìm kiếm có chiều cao giống như ô nhập liệu */
+        margin-left: -1px; /* Đảm bảo không có khoảng cách giữa ô nhập liệu và nút */
+    }
+
+    /* Điều chỉnh kích thước của nút */
+    .btn-primary {
+        flex: 0 0 auto; /* Đảm bảo kích thước nút không thay đổi */
+        background-color: black; /* Màu nền của nút */
+        color: white; /* Màu chữ của nút */
+        border: 2px solid #333; /* Màu viền của nút */
+    }
+
+    /* Nếu muốn thay đổi màu viền khi nút được hover hoặc focus */
+    .btn-primary:hover,
+    .btn-primary:focus {
+        border-color: #555; /* Màu viền khi hover hoặc focus */
+        background-color: #333; /* Màu nền khi hover hoặc focus */
+        outline: none; /* Xóa đường viền mặc định khi focus */
+    }
+
+
+</style>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::main})}">
+
+    <body>
+    <main>
+        <div class="container">
+            <div class="text-center hihi">
+                <h1>your product</h1>
+            </div>
+            <div th:replace="~{/cart/view :: shopping-cart}"></div>
+            <div class="text-center hihi">
+                <h1>order information</h1>
+            </div>
+            <div class="mb-3">
+                <label class="form-label"> Name</label>
+                <div class="form-control" id="username" th:text="${#authentication.name}"></div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Date</label>
+                <div class="form-control">{{order.createDate | date: 'dd-MM-yyyy'}}</div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Address</label>
+                <textarea class="form-control" ng-model="order.address" rows="3"></textarea>
+            </div>
+            <div class="mb-3">
+                <button ng-click="order.purchase()" class="btn btn-primary">Order</button>
+            </div>
+        </div>
+    </main>
+    <script>
+
+    </script>
+    </body>
+
+</html>

@@ -1,0 +1,36 @@
+<div class="container px-4 px-lg-5" xmlns:th="http://www.thymeleaf.org">
+    <a class="navbar-brand tieude" href="/" >Shopping</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+            <li class="nav-item"><a class="nav-link active" aria-current="page" th:href="@{/}">Home</a></li>
+
+            <th:block th:if="${#authentication.principal != 'anonymousUser'}">
+                <!-- Được hiển thị nếu người dùng đã đăng nhập -->
+
+                <li class="nav-item"><a class="nav-link" th:href="@{/order/list}">Your Order</a></li>
+                <li class="nav-item" th:if="${#authorization.expression('hasRole(''ROLE_DIRE'') or hasRole(''ROLE_STAF'')')}">
+                    <a class="nav-link" th:href="@{/admin/home/index}">Admin</a>
+                </li>
+
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Welcome [[${#authentication.name}]]</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/security/logoff}">Sign Out</a></li>
+            </th:block>
+
+            <th:block th:if="${#authentication.principal == 'anonymousUser'}">
+                <!-- Được hiển thị nếu người dùng chưa đăng nhập -->
+                <li class="nav-item"><a class="nav-link" th:href="@{/security/login/form}">Sign in</a></li>
+            </th:block>
+        </ul>
+
+        <form class="d-flex">
+            <button class="btn btn-outline-dark">
+                <a th:href="@{/cart/view}" style="text-decoration: none; color: black;">{{cart.count}} x ${{cart.amount | number : 2}}</a>
+                <i class="bi-cart-fill me-1"></i>
+            </button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::main})}">
+
+    <body>
+            <main>
+                <div class="container px-4 px-lg-5 mt-5" >
+                    <div class="text-center hihi">
+                        <h1>SHOP</h1>
+                    </div>
+                    <div   th:replace="/layout/category.html"></div>
+                    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center" style="margin-top: 20px;">
+                        <div class="col mb-5" th:each="p : ${items}">
+                            <div class="card h-100">
+                                <!-- Product image-->
+                                <a th:href="@{|/product/detail/${p.id}|}">
+                                    <img class="card-img-top" th:src="@{|/assets/images/${p.image}|}" alt="..." />
+                                </a>
+
+                                <!-- Product details-->
+                                <div class="card-body p-4">
+                                    <div class="text-center">
+                                        <!-- Product name-->
+                                        <h5 class="fw-bolder" th:text="${p.name}"></h5>
+                                        <!-- Product price-->
+                                        <p th:text="${p.price}"></p>
+                                    </div>
+                                </div>
+                                <!-- Product actions-->
+                                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                    <div class="text-center">
+                                        <a class="btn btn-outline-dark mt-auto" th:attr="ng-click=@{|cart.add(${p.id})|}">Thêm vào giỏ hàng</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </main>
+
+    </body>
+</html>
