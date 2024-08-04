@@ -31,12 +31,12 @@ public class SecurityController {
         // Gọi phương thức để lưu người dùng vào cơ sở dữ liệu
         userService.loginFromOAuth2(oauth2User);
 
-        return "login/login";
+        return "redirect:/";
     }
     @RequestMapping("/security/login/success")
     public String loginSuccess1(Model model) {
         model.addAttribute("message", "Đăng nhập thành công");
-        return "login/login";
+        return "redirect:/";
     }
 
     @RequestMapping("/security/login/error")

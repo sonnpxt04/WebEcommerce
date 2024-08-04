@@ -39,7 +39,7 @@
                     <tr ng-repeat="item in cart.items">
                       <td>
                         <div class="d-flex align-items-center">
-                          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp" class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
+
                           <div class="ms-3">
                             <h5>{{item.name}}</h5>
                             <p class="small mb-0">{{item.id}}</p>
@@ -50,7 +50,7 @@
                         <input type="number" min="1" ng-change="cart.saveToLocalStorage()" ng-model="item.qty" class="form-control" style="width: 70px;">
                       </td>
                       <td>
-                        <h5 class="mb-0">{{item.qty*item.price | number : 2}}</h5>
+                        <h5 class="mb-0">{{item.qty*item.price | number }} VND</h5>
                       </td>
                       <td>
                         <button ng-click="cart.remove(item.id)" class="btn btn-danger">Remove</button>
@@ -58,15 +58,13 @@
                     </tr>
                     </tbody>
                   </table>
-
+                  <div class="d-flex justify-content-end mb-4">
+                    <h4>Total: {{cart.getTotal() | number }} VND</h4>
+                  </div>
                   <div>
                     <button ng-click="cart.clear()" class="btn btn-danger">Clear</button>
                   </div>
                 </div>
-
-
-
-
               </div>
               <div class="d-flex " style="margin-left: 35rem;">
                 <button  class="btn btn-info "><a style="text-decoration: none; color: black;" th:href="@{/order/checkout}">Checkout</a></button>

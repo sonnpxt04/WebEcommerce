@@ -8,6 +8,10 @@
                 <h1>your product</h1>
             </div>
             <div th:replace="~{/cart/view :: shopping-cart}"></div>
+
+            <div class="d-flex justify-content-end mb-4">
+                <h4>Total: {{cart.getTotal() | number : 2}} VND</h4>
+            </div>
             <div class="text-center hihi">
                 <h1>order information</h1>
             </div>

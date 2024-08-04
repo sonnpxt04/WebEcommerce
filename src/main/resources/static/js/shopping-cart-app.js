@@ -17,7 +17,13 @@ app.controller("shopping-cart-ctrl", function($scope, $http) {
                 });
             }
         },
-
+        getTotal: function() {
+            let total = 0;
+            for (let item of this.items) {
+                total += item.qty * item.price;
+            }
+            return total;
+        },
         remove(id) {
             var itemIndex = this.items.findIndex(item => item.id == id);
             if (itemIndex !== -1) {
