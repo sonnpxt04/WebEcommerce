@@ -43,7 +43,6 @@ public class PayController {
         long amount = orderRequest.getOrderDetails().stream()
                 .mapToLong(detail -> (long) (detail.getPrice() * detail.getQuantity()))
                 .sum();
-
         String vnp_TxnRef = Config.getRandomNumber(8);
         String vnp_IpAddr = Config.getIpAddress(request);
         String vnp_TmnCode = Config.vnp_TmnCode;

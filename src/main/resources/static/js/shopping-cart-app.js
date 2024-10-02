@@ -100,7 +100,7 @@ app.controller("shopping-cart-ctrl", function($scope, $http) {
                     console.log("URL thanh toán:", resp.data.url); // In URL ra console
 
                     Swal.fire({
-                        title: "Thanh toán",
+                        title: "Đặt hàng thành  công!",
                         text: "Nhấp vào liên kết để thanh toán:",
                         html: `<a href="${resp.data.url}" target="_blank">Thanh toán tại đây</a>`,
                         icon: "info",
